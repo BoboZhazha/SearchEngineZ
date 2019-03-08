@@ -26,12 +26,12 @@ class JobboleSpider(scrapy.Spider):
         for url in all_url:
             yield Request(url=url, callback=self.parse_parse_detail)
 
-
     def parse_parse_detail(self, response):
         title = response.xpath("//div[@class='entry-header']/h1/text()").extract_first()
         content = response.xpath("//div[@class='entry']//text()").extract()
         jobboleItem = JobBoleItem()
         jobboleItem['title'] = title
         jobboleItem['detail_url'] = response.url
+        jobboleItem['content'] = "".join(content).replace()
         jobboleItem['grep_time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(jobboleItem)
