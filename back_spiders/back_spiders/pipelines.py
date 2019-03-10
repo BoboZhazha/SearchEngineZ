@@ -14,8 +14,9 @@ class ElasticsearchPipeline(object):
         article = ArticleType()
         article.title = item['title']
         article.detail_url = item['detail_url']
-        article.title = item['content']
-        article.title = item['grep_time']
+        article.content = item['content']
+        article.grep_time = item['grep_time']
+        article.save()
         return item
 
 

@@ -16,7 +16,6 @@ class ArticleType(DocType):
     title = Text(analyzer="ik_max_word")
     # 不需要分词,定义成keyword
     detail_url = Keyword()
-
     content = Text(analyzer="ik_max_word")
     grep_time = Date()
 

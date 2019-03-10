@@ -3,6 +3,7 @@ import scrapy
 from scrapy import Request
 from back_spiders.items import JobBoleItem
 import datetime
+import re
 
 class JobboleSpider(scrapy.Spider):
     name = 'jobbole'
@@ -28,10 +29,11 @@ class JobboleSpider(scrapy.Spider):
 
     def parse_parse_detail(self, response):
         title = response.xpath("//div[@class='entry-header']/h1/text()").extract_first()
-        content = response.xpath("//div[@class='entry']//text()").extract()
+        content_with_blank = response.xpath("//div[@class='entry']//text()").extract().sub
+        content = re.sub("\s", "", content_with_blank)
         jobboleItem = JobBoleItem()
         jobboleItem['title'] = title
         jobboleItem['detail_url'] = response.url
-        jobboleItem['content'] = "".join(content).replace()
+        jobboleItem['content'] = content
         jobboleItem['grep_time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         print(jobboleItem)
