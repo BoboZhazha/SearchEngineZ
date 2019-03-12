@@ -29,11 +29,11 @@ class JobboleSpider(scrapy.Spider):
 
     def parse_parse_detail(self, response):
         title = response.xpath("//div[@class='entry-header']/h1/text()").extract_first()
-        content_with_blank = response.xpath("//div[@class='entry']//text()").extract().sub
+        content_with_blank = "".join(response.xpath("//div[@class='entry']//text()").extract())
         content = re.sub("\s", "", content_with_blank)
         jobboleItem = JobBoleItem()
         jobboleItem['title'] = title
         jobboleItem['detail_url'] = response.url
         jobboleItem['content'] = content
         jobboleItem['grep_time'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        print(jobboleItem)
+        yield jobboleItem
