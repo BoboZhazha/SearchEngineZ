@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy import Request
+from scrapy_redis.spiders import RedisSpider
 from back_spiders.items import JobBoleItem
 import datetime
 import re
 
-class JobboleSpider(scrapy.Spider):
+
+class JobboleSpider(RedisSpider):
     name = 'jobbole'
     start_urls = ['http://blog.jobbole.com/all-posts/']
+    redis_key = "jobbole:strat_urls"
 
     def parse(self, response):
         # 获取最大页数
