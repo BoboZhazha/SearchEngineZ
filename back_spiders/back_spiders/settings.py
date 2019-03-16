@@ -89,8 +89,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-
-
 # 使用scrapy-redis里的去重组件，不使用scrapy默认的去重方式
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # 使用scrapy-redis里的调度器组件，不使用默认的调度器
@@ -108,8 +106,6 @@ SCHEDULER_QUEUE_CLASS = "scrapy_redis.queue.SpiderQueue"
 # LOG_LEVEL = 'DEBUG'
 
 # Introduce an artifical delay to make use of parallelism. to speed up the
-# crawl.
-DOWNLOAD_DELAY = 1
 # 指定数据库的主机IP
 REDIS_HOST = "127.0.0.1"
 # 指定数据库的端口号
