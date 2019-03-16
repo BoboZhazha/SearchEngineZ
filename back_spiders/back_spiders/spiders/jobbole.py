@@ -15,7 +15,6 @@ class JobboleSpider(RedisSpider):
     def parse(self, response):
         # 获取最大页数
         all_page_num = response.xpath("//div[@class='navigation margin-20']//a/text()")[-2].extract()
-        all_page_num = "10"
 
         all_url = response.xpath("//div[@id='archive']//a[@class='archive-title']/@href").extract()
         for url in all_url:
